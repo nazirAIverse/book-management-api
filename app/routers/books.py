@@ -4,11 +4,13 @@ from sqlalchemy.orm import Session
 from app.db.session import get_db
 from app.schemas.book import BookCreate, BookResponse, BookUpdate
 from app.services import book_service
+from app.core.dependencies import get_current_user
 
 
 router = APIRouter(
     prefix="/books",
     tags=["Books"],
+    dependencies=[Depends(get_current_user)],
 )
 
 
